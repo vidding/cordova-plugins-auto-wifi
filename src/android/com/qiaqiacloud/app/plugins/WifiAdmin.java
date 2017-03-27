@@ -1,4 +1,4 @@
-package com.example.administrator.jiance.utils;
+package com.qiaqiacloud.app.plugins;
 
 import android.content.Context;
 import android.net.wifi.ScanResult;

@@ -25,7 +25,7 @@ public class AutoWifi extends CordovaPlugin {
     private void init(){
         if (wifitosg == null){
             Context context = cordova.getActivity().getApplicationContext();
-            wifitosg = new WifiToSG(context)
+            wifitosg = new WifiToSG(context);
         }
     }
 
@@ -75,8 +75,8 @@ public class AutoWifi extends CordovaPlugin {
         return null;
     }
 
-    private PluginResult ACTION_CONNECT(JSONArray args, final CallbackContext callbackContext){
-        Log.w(LOG_TAG, "ACTION_CONNECT");
+    private PluginResult executeConnect(JSONArray args, final CallbackContext callbackContext){
+        Log.w(LOG_TAG, "executeConnect");
 
         init();
 
@@ -86,8 +86,8 @@ public class AutoWifi extends CordovaPlugin {
         return null;
     }
 
-    private PluginResult ACTION_UNCONNECT(JSONArray args, final CallbackContext callbackContext){
-        Log.w(LOG_TAG, "ACTION_UNCONNECT");
+    private PluginResult executeUnconnect(JSONArray args, final CallbackContext callbackContext){
+        Log.w(LOG_TAG, "executeUnconnect");
 
         if (wifitosg != null)
             wifitosg.UnConnect();
@@ -95,27 +95,25 @@ public class AutoWifi extends CordovaPlugin {
         return null;
     }
 
-    private PluginResult ACTION_IS_CONNECTED(JSONArray args, final CallbackContext callbackContext){
-        Log.w(LOG_TAG, "ACTION_IS_CONNECTED");
+    private PluginResult executeIsConnected(JSONArray args, final CallbackContext callbackContext){
+        Log.w(LOG_TAG, "executeIsConnected");
 
         if (wifitosg != null) {
-            var isconnect = wifitosg.IsConnected();
-            callbackContext.success(isconnect);
+            callbackContext.success(wifitosg.IsConnected() ? 1 : 0);
         } else {
-            callbackContext.success(false);
+            callbackContext.success(0);
         }
 
         return null;
     }
 
-    private PluginResult ACTION_IS_CONNECTWIFI(JSONArray args, final CallbackContext callbackContext){
-        Log.w(LOG_TAG, "ACTION_IS_CONNECTWIFI");
+    private PluginResult executeIsConnectwifi(JSONArray args, final CallbackContext callbackContext){
+        Log.w(LOG_TAG, "executeIsConnectwifi");
 
         if (wifitosg != null) {
-            var isconnectwifi = wifitosg.IsConnectedWifi();
-            callbackContext.success(isconnectwifi);
+            callbackContext.success(wifitosg.IsConnectedWifi() ? 1 : 0);
         } else {
-            callbackContext.success(false);
+            callbackContext.success(0);
         }
         return null;
     }

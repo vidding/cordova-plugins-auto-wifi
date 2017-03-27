@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugins-auto-wifi"
-    version="0.0.1">
+    version="0.0.2">
   <name>autowifi</name>
   <description>
       A cordova plugin, for auto connect specified WiFi, until connected.
@@ -13,16 +13,23 @@
   <repo>https://github.com/vidding/cordova-plugins-auto-wifi.git</repo>
   <issue>https://github.com/vidding/cordova-plugins-auto-wifi/issues</issue>
   <engines>
-    <engine name="cordova" version=">=3.0.0"/>
+    <engine name="cordova-android" version=">=4.0.0" />
   </engines>
   <js-module src="www/autowifi.js" name="autowifi">
     <clobbers target="window.plugins.autowifi" />
   </js-module>
   <!-- android -->
   <platform name="android">
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+      <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    </config-file>
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="AutoWifi">
         <param name="android-package" value="com.qiaqiacloud.app.plugins.AutoWifi" />
+        <param name="onload" value="true" />
       </feature>
     </config-file>
     <source-file src="src/android/com/qiaqiacloud/app/plugins/AutoWifi.java" target-dir="src/com/qiaqiacloud/app/plugins"/>

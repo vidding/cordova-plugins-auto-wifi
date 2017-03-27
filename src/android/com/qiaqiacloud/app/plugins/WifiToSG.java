@@ -1,4 +1,4 @@
-package com.example.administrator.jiance.utils;
+package com.qiaqiacloud.app.plugins;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,8 +8,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 // import android.widget.Toast;
-
-import com.example.administrator.jiance.ui.DevSetAty;
 
 /**
  * Created by suye on 2016/3/31.
