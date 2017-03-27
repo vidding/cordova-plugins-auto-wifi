@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugins-auto-wifi"
-    version="1.0.0">
+    version="0.0.1">
   <name>autowifi</name>
   <description>
       A cordova plugin, for auto connect specified WiFi, until connected.
