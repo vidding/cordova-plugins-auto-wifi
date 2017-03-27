@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugins-auto-wifi",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A cordova plugin, for auto connect specified WiFi, until connected.",
   "cordova": {
     "id": "cordova-plugins-auto-wifi",
