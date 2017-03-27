@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugins-auto-wifi"
+    version="0.0.1">
+  <name>autowifi</name>
+  <description>
+      A cordova plugin, for auto connect specified WiFi, until connected.
+  </description>
+  <author>vidding</author>
+  <license>MIT License</license>
+  <keywords>wifi, ssid, auto connect</keywords>
+  <repo>https://github.com/vidding/cordova-plugins-auto-wifi.git</repo>
+  <issue>https://github.com/vidding/cordova-plugins-auto-wifi/issues</issue>
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+  <js-module src="www/autowifi.js" name="autowifi">
+    <clobbers target="window.plugins.autowifi" />
+  </js-module>
+  <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="AutoWifi">
+        <param name="android-package" value="com.qiaqiacloud.app.plugins.AutoWifi" />
+      </feature>
+    </config-file>
+    <source-file src="src/android/com/qiaqiacloud/app/plugins/AutoWifi.java" target-dir="src/com/qiaqiacloud/app/plugins"/>
+    <source-file src="src/android/com/qiaqiacloud/app/plugins/WifiAdmin.java" target-dir="src/com/qiaqiacloud/app/plugins"/>
+    <source-file src="src/android/com/qiaqiacloud/app/plugins/WifiToSG.java" target-dir="src/com/qiaqiacloud/app/plugins"/>
+  </platform>
+</plugin>

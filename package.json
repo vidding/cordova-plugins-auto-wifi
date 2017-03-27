@@ -1,0 +1,32 @@
+{
+  "name": "cordova-plugins-auto-wifi",
+  "version": "0.0.1",
+  "description": "A cordova plugin, for auto connect specified WiFi, until connected.",
+  "cordova": {
+    "id": "cordova-plugins-auto-wifi",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vidding/cordova-plugins-auto-wifi.git"
+  },
+  "keywords": [
+    "wifi",
+    "ssid",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Yongshu Wei <skyyu164@gmail.com> (https://github.com/vidding)",
+  "license": "MIT license",
+  "bugs": {
+    "url": "https://github.com/vidding/cordova-plugins-auto-wifi/issues"
+  },
+  "homepage": "https://github.com/vidding/cordova-plugins-auto-wifi#readme"
+}
