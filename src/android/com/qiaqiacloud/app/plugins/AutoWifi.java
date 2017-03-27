@@ -21,6 +21,7 @@ public class AutoWifi extends CordovaPlugin {
     private static final String ACTION_IS_CONNECTWIFI = "isconnectwifi";
 
     private WifiToSG wifitosg = null;
+    private boolean finding = false;
 
     private void init(){
         if (wifitosg == null){
@@ -80,9 +81,31 @@ public class AutoWifi extends CordovaPlugin {
 
         init();
 
-        if (wifitosg != null)
+        if (wifitosg != null) {
             wifitosg.Connect();
-        callbackContext.success();
+            finding = true;
+
+            cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
+                    while(finding) {
+                        try {
+                            Thread.sleep(1000);
+                            if (wifitosg.IsConnected()) {
+                                if (wifitosg.IsConnectedWifi()) {
+                                    callbackContext.success(1); // Thread-safe.
+                                    finding = false;
+                                } else {
+                                    wifitosg.Connect();
+                                }
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                            finding = false;
+                        }
+                    }
+                }
+            });
+        }
         return null;
     }
 
