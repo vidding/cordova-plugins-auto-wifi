@@ -14,7 +14,11 @@ A cordova plugin, for auto connect specified WiFi, until connected.
 <pre><code>setssid(ssid, pwd)</code></pre>
     
 - 开始连接，连接过程会断开已连接的WIFI，然后扫描WIFI，并尝试连接WIFI
-<pre><code>connect(function(ret) { if (ret == 1) {console.log("successful connect to wifi")}})</code></pre>
+<pre><code>connect(function(ret) { 
+  if (ret == 1) {
+    console.log("successful connect to wifi");
+  }
+})</code></pre>
    
 - 断开WIFI连接
 <pre><code>unconnect()</code></pre>
