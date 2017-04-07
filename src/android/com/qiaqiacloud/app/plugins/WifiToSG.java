@@ -97,7 +97,7 @@ public class WifiToSG {
                     }
                 }
             }
-        }
+        };
     }
 
     public static NetworkInfo getActiveNetwork(Context context){
@@ -141,8 +141,8 @@ public class WifiToSG {
     // 断开当前连接
     public void UnConnect(){
         if (bStart) {
-            context.unregisterReceiver(receiver)
-            bStart = false
+            context.unregisterReceiver(receiver);
+            bStart = false;
         }
         WifiAdmin wifi = new WifiAdmin(context);
         wifi.disconnectWifi(wifi.getNetworkId());
