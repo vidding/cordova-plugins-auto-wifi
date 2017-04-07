@@ -112,6 +112,7 @@ public class AutoWifi extends CordovaPlugin {
     private PluginResult executeUnconnect(JSONArray args, final CallbackContext callbackContext){
         Log.w(LOG_TAG, "executeUnconnect");
 
+        finding = false
         if (wifitosg != null)
             wifitosg.UnConnect();
         callbackContext.success();

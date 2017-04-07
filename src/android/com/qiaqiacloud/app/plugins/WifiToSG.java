@@ -22,6 +22,8 @@ public class WifiToSG {
     private boolean bWifiEnabled; //表示 WIFI 是否已经打开
     private WifiAdmin wifiAdmin;
     private Context context;
+    private BroadcastReceiver receiver;
+    private IntentFilter filter;
 
     public WifiToSG(Context context){
 
@@ -33,11 +35,11 @@ public class WifiToSG {
         bWifiEnabled = false;
         wifiAdmin = new WifiAdmin(context);
 
-        IntentFilter filter = new IntentFilter();
+        filter = new IntentFilter();
         filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        context.registerReceiver(new BroadcastReceiver() {
+        receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
@@ -95,7 +97,7 @@ public class WifiToSG {
                     }
                 }
             }
-        }, filter);
+        }
     }
 
     public static NetworkInfo getActiveNetwork(Context context){
@@ -121,7 +123,10 @@ public class WifiToSG {
 
     // 开始尝试连接 sgSSID
     public void Connect(){
-        bStart = true;
+        if (!bStart) {
+            context.registerReceiver(receiver, filter);
+            bStart = true;
+        }
         if (!bConnectedWifi) {
             if (bWifiEnabled) {
                 System.out.println("wifi enabled 1");
@@ -135,6 +140,10 @@ public class WifiToSG {
 
     // 断开当前连接
     public void UnConnect(){
+        if (bStart) {
+            context.unregisterReceiver(receiver)
+            bStart = false
+        }
         WifiAdmin wifi = new WifiAdmin(context);
         wifi.disconnectWifi(wifi.getNetworkId());
     }
